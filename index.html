@@ -142,7 +142,7 @@ h2.serif strong{font-weight:600;}
 .clients-intro{max-width:680px;margin-bottom:4rem;}
 .clients-cards{display:grid;grid-template-columns:1fr 1fr;gap:1px;background:var(--gold-line);margin-bottom:4rem;}
 .cc{background:var(--ink2);padding:3rem;}
-.cc-num{font-family:'Cormorant Garamond',serif;font-size:4rem;font-weight:300;color:var(--gold-pale);line-height:1;margin-bottom:1rem;}
+.cc-num{font-family:'Cormorant Garamond',serif;font-size:4rem;font-weight:700;color:#6b7280;line-height:1;margin-bottom:1rem;text-shadow:0 1px 3px rgba(0,0,0,0.5);}
 .cc h3{font-family:'Cormorant Garamond',serif;font-size:1.35rem;font-weight:600;color:var(--gold-light);margin-bottom:1rem;}
 .cc p{font-size:0.85rem;color:#8a9bb5;line-height:1.85;font-weight:300;}
 .clients-logos-wrap{border-top:1px solid var(--gold-line);padding-top:3rem;}
@@ -165,10 +165,28 @@ h2.serif strong{font-weight:600;}
 .pm-label{font-size:0.6rem;letter-spacing:0.14em;text-transform:uppercase;color:var(--muted);margin-top:0.3rem;}
 .pg-right p{font-size:0.9rem;color:#8a9bb5;line-height:1.9;font-weight:300;margin-bottom:1.25rem;}
 .pg-values{margin-top:2rem;display:flex;flex-direction:column;gap:0;}
-.pv{display:flex;align-items:flex-start;gap:1.25rem;padding:1.1rem 0;border-bottom:1px solid rgba(255,255,255,0.05);}
+.pv{display:flex;align-items:flex-start;gap:1rem;padding:1.1rem 0;border-bottom:1px solid rgba(255,255,255,0.05);}
 .pv:first-child{border-top:1px solid rgba(255,255,255,0.05);}
-.pv-label{font-size:0.65rem;letter-spacing:0.14em;text-transform:uppercase;color:var(--gold);font-weight:500;min-width:80px;padding-top:0.1rem;}
+.pv-bullet{color:var(--gold);font-size:0.7rem;flex-shrink:0;margin-top:0.15rem;line-height:1;}
+.pv-label{font-size:0.75rem;letter-spacing:0.14em;text-transform:uppercase;color:var(--gold);font-weight:600;margin-bottom:0.2rem;}
 .pv-desc{font-size:0.82rem;color:var(--muted);line-height:1.6;font-weight:300;}
+
+/* ── CAROUSEL ── */
+#carousel{background:var(--ink);padding:5rem 0;position:relative;overflow:hidden;}
+#carousel::before,#carousel::after{content:'';position:absolute;top:0;bottom:0;width:120px;z-index:10;pointer-events:none;}
+#carousel::before{left:0;background:linear-gradient(to right,var(--ink),transparent);}
+#carousel::after{right:0;background:linear-gradient(to left,var(--ink),transparent);}
+.carousel-header{text-align:center;margin-bottom:3rem;padding:0 3.5rem;}
+.carousel-track-wrap{overflow:hidden;width:100%;}
+.carousel-track{display:flex;gap:1.5rem;width:max-content;animation:scroll-left 60s linear infinite;}
+.carousel-track:hover{animation-play-state:paused;}
+.carousel-track2{animation:scroll-left 80s linear infinite reverse;}
+.c-chip{flex-shrink:0;padding:0.6rem 1.4rem;border:1px solid var(--gold-line);font-size:0.72rem;font-weight:500;color:rgba(255,255,255,0.5);letter-spacing:0.06em;white-space:nowrap;transition:all 0.25s;background:rgba(184,150,62,0.03);}
+.c-chip:hover{border-color:var(--gold);color:var(--gold-light);background:var(--gold-pale);}
+.c-chip.pe{border-color:rgba(90,138,46,0.3);color:rgba(122,182,72,0.6);}
+.c-chip.pe:hover{border-color:var(--green);color:#7ab648;}
+.carousel-rows{display:flex;flex-direction:column;gap:1rem;}
+@keyframes scroll-left{0%{transform:translateX(0);}100%{transform:translateX(-50%);}}
 
 /* ── INSIGHTS ── */
 #insights{background:var(--ink2);}
@@ -482,12 +500,32 @@ footer p{font-size:0.68rem;color:var(--muted);letter-spacing:0.06em;}
         <p>I lead PierceGray's Technology, Digital &amp; Data Officers Practice — a specialized capability serving clients at the intersection of technology leadership and business transformation. Our work spans CIO, CTO, CDO, AI &amp; Data, Digital, Cloud, and Security across Industrial, Consumer, Healthcare, Financial Services, and Technology sectors.</p>
         <p>An 85% client repeat rate isn't a statistic. It's a reflection of how we work: as strategic partners who understand your business, your market, and what exceptional leadership looks like in your specific context.</p>
         <div class="pg-values">
-          <div class="pv"><div class="pv-label">Excellence</div><div class="pv-desc">Thoughtful advisors delivering results with speed and accuracy.</div></div>
-          <div class="pv"><div class="pv-label">Integrity</div><div class="pv-desc">Transparent in communication, authentic in every interaction.</div></div>
-          <div class="pv"><div class="pv-label">Grit</div><div class="pv-desc">We embrace challenges and overcome obstacles with determination.</div></div>
-          <div class="pv"><div class="pv-label">Teamwork</div><div class="pv-desc">One firm, collective network, incentives aligned with our clients.</div></div>
+          <div class="pv"><span class="pv-bullet">◆</span><div><div class="pv-label">Excellence</div><div class="pv-desc">Thoughtful advisors delivering results with speed and accuracy.</div></div></div>
+          <div class="pv"><span class="pv-bullet">◆</span><div><div class="pv-label">Integrity</div><div class="pv-desc">Transparent in communication, authentic in every interaction.</div></div></div>
+          <div class="pv"><span class="pv-bullet">◆</span><div><div class="pv-label">Grit</div><div class="pv-desc">We embrace challenges and overcome obstacles with determination.</div></div></div>
+          <div class="pv"><span class="pv-bullet">◆</span><div><div class="pv-label">Teamwork</div><div class="pv-desc">One firm, collective network, incentives aligned with our clients.</div></div></div>
         </div>
       </div>
+    </div>
+  </div>
+</section>
+
+<!-- CAROUSEL -->
+<section id="carousel">
+  <div class="carousel-header">
+    <div class="s-eyebrow" style="justify-content:center;"><div class="s-eyebrow-line"></div><span>Client Roster</span><div class="s-eyebrow-line" style="background:var(--gold);"></div></div>
+    <h2 class="serif" style="text-align:center;">Organizations I've <strong>Had the Privilege of Serving.</strong></h2>
+    <p style="color:var(--muted);font-size:0.88rem;margin-top:0.75rem;font-weight:300;"><span style="color:var(--gold-light);">White</span> = Corporate &nbsp;·&nbsp; <span style="color:#7ab648;">Green</span> = PE-Backed</p>
+  </div>
+  <div class="carousel-rows">
+    <div class="carousel-track-wrap">
+      <div class="carousel-track" id="row1"></div>
+    </div>
+    <div class="carousel-track-wrap">
+      <div class="carousel-track carousel-track2" id="row2"></div>
+    </div>
+    <div class="carousel-track-wrap">
+      <div class="carousel-track" id="row3"></div>
     </div>
   </div>
 </section>
