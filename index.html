@@ -1,0 +1,576 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>Gus De Camargo</title>
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;0,700;1,300;1,400&family=Inter:wght@300;400;500;600&display=swap');
+
+*{margin:0;padding:0;box-sizing:border-box;}
+:root{
+  --ink:#04080f;
+  --ink2:#080f1e;
+  --ink3:#0c1628;
+  --gold:#b8963e;
+  --gold-light:#d4af6a;
+  --gold-pale:rgba(184,150,62,0.12);
+  --gold-line:rgba(184,150,62,0.3);
+  --white:#ffffff;
+  --off:#f5f0e8;
+  --muted:#7a8399;
+  --muted2:#4a5568;
+  --green:#5a8a2e;
+}
+html{scroll-behavior:smooth;}
+body{font-family:'Inter',sans-serif;background:var(--ink);color:var(--white);overflow-x:hidden;-webkit-font-smoothing:antialiased;}
+
+/* ── SCROLLBAR ── */
+::-webkit-scrollbar{width:4px;}
+::-webkit-scrollbar-track{background:var(--ink);}
+::-webkit-scrollbar-thumb{background:var(--gold);}
+
+/* ── NAV ── */
+nav{position:fixed;top:0;left:0;right:0;z-index:200;height:72px;display:flex;align-items:center;justify-content:space-between;padding:0 3.5rem;background:rgba(4,8,15,0.88);backdrop-filter:blur(20px);border-bottom:1px solid var(--gold-line);}
+.nav-brand{display:flex;align-items:baseline;gap:0.6rem;}
+.nav-wordmark{font-family:'Cormorant Garamond',serif;font-size:1.3rem;font-weight:600;letter-spacing:0.04em;color:var(--white);}
+.nav-wordmark em{color:var(--gold);font-style:normal;}
+.nav-sep{width:1px;height:18px;background:var(--gold-line);}
+.nav-title{font-size:0.65rem;letter-spacing:0.18em;text-transform:uppercase;color:var(--muted);font-weight:400;}
+.nav-links{display:flex;gap:2.5rem;align-items:center;}
+.nav-links a{font-size:0.67rem;letter-spacing:0.14em;text-transform:uppercase;color:var(--muted);text-decoration:none;transition:color 0.25s;font-weight:500;}
+.nav-links a:hover{color:var(--gold-light);}
+.nav-cta{padding:0.5rem 1.4rem;border:1px solid var(--gold);color:var(--gold);font-size:0.65rem;letter-spacing:0.14em;text-transform:uppercase;text-decoration:none;transition:all 0.25s;font-weight:500;}
+.nav-cta:hover{background:var(--gold);color:var(--ink);}
+
+/* ── HERO ── */
+#hero{position:relative;min-height:100vh;display:grid;grid-template-columns:1fr 480px;align-items:center;padding:9rem 3.5rem 5rem;overflow:hidden;gap:4rem;}
+.hero-canvas{position:absolute;inset:0;background:radial-gradient(ellipse 80% 80% at 70% 50%,#0d1f3a 0%,#04080f 60%);}
+.hero-grid-lines{position:absolute;inset:0;background-image:linear-gradient(rgba(184,150,62,0.04) 1px,transparent 1px),linear-gradient(90deg,rgba(184,150,62,0.04) 1px,transparent 1px);background-size:80px 80px;}
+.hero-vignette{position:absolute;inset:0;background:radial-gradient(ellipse 100% 100% at 50% 50%,transparent 40%,rgba(4,8,15,0.7) 100%);}
+.hero-accent-line{position:absolute;top:0;left:50%;width:1px;height:100%;background:linear-gradient(to bottom,transparent,var(--gold-line) 30%,var(--gold-line) 70%,transparent);opacity:0.4;}
+
+.hero-left{position:relative;z-index:5;}
+.hero-kicker{display:flex;align-items:center;gap:1rem;margin-bottom:2rem;}
+.hero-kicker-line{width:48px;height:1px;background:linear-gradient(to right,var(--gold),transparent);}
+.hero-kicker span{font-size:0.65rem;letter-spacing:0.22em;text-transform:uppercase;color:var(--gold);font-weight:500;}
+
+h1.display{font-family:'Cormorant Garamond',serif;font-size:clamp(3rem,5.5vw,5.2rem);font-weight:300;line-height:1.05;letter-spacing:-0.01em;margin-bottom:2rem;}
+h1.display strong{font-weight:600;display:block;}
+h1.display em{color:var(--gold);font-style:italic;font-weight:300;}
+
+.hero-rule{width:80px;height:1px;background:linear-gradient(to right,var(--gold),transparent);margin-bottom:2rem;}
+
+.hero-desc{font-size:0.95rem;color:var(--muted);line-height:1.85;max-width:520px;margin-bottom:3rem;font-weight:300;}
+
+.hero-actions{display:flex;gap:1.25rem;align-items:center;margin-bottom:4rem;}
+.btn-gold{display:inline-flex;align-items:center;gap:0.6rem;padding:1rem 2.25rem;background:linear-gradient(135deg,var(--gold),#9a7a2c);color:var(--ink);font-size:0.7rem;letter-spacing:0.14em;text-transform:uppercase;text-decoration:none;font-weight:600;transition:all 0.25s;position:relative;overflow:hidden;}
+.btn-gold::after{content:'';position:absolute;inset:0;background:linear-gradient(135deg,rgba(255,255,255,0.1),transparent);opacity:0;}
+.btn-gold:hover{transform:translateY(-1px);box-shadow:0 8px 30px rgba(184,150,62,0.35);}
+.btn-ghost{display:inline-flex;align-items:center;gap:0.6rem;padding:1rem 2.25rem;border:1px solid var(--gold-line);color:var(--off);font-size:0.7rem;letter-spacing:0.14em;text-transform:uppercase;text-decoration:none;font-weight:400;transition:all 0.25s;}
+.btn-ghost:hover{border-color:var(--gold);color:var(--gold-light);}
+.btn-arrow{font-size:0.85rem;}
+
+.hero-metrics{display:grid;grid-template-columns:repeat(3,1fr);gap:0;border-top:1px solid var(--gold-line);}
+.metric{padding:1.75rem 0 0;position:relative;}
+.metric+.metric{border-left:1px solid var(--gold-line);padding-left:2rem;}
+.metric-num{font-family:'Cormorant Garamond',serif;font-size:2.8rem;font-weight:600;color:var(--gold-light);line-height:1;letter-spacing:-0.02em;}
+.metric-label{font-size:0.62rem;letter-spacing:0.16em;text-transform:uppercase;color:var(--muted);margin-top:0.4rem;font-weight:400;}
+
+/* PHOTO COLUMN */
+.hero-right{position:relative;z-index:5;display:flex;flex-direction:column;align-items:flex-end;}
+.photo-container{position:relative;width:380px;}
+.photo-border-frame{position:absolute;inset:-12px;border:1px solid var(--gold-line);z-index:1;pointer-events:none;}
+.photo-border-frame::before{content:'';position:absolute;top:-1px;left:-1px;width:40px;height:40px;border-top:2px solid var(--gold);border-left:2px solid var(--gold);}
+.photo-border-frame::after{content:'';position:absolute;bottom:-1px;right:-1px;width:40px;height:40px;border-bottom:2px solid var(--gold);border-right:2px solid var(--gold);}
+.photo-img{width:100%;display:block;filter:contrast(1.08) brightness(0.96);position:relative;z-index:2;}
+.photo-overlay{position:absolute;inset:0;background:linear-gradient(to bottom,transparent 50%,rgba(4,8,15,0.85) 100%);z-index:3;}
+.photo-caption{position:absolute;bottom:0;left:0;right:0;padding:2rem 1.75rem;z-index:4;}
+.photo-name{font-family:'Cormorant Garamond',serif;font-size:1.5rem;font-weight:600;color:var(--white);letter-spacing:0.02em;}
+.photo-role{font-size:0.62rem;letter-spacing:0.18em;text-transform:uppercase;color:var(--gold);margin-top:0.3rem;font-weight:400;}
+.photo-firm{font-size:0.65rem;color:var(--muted);margin-top:0.2rem;font-weight:300;}
+.photo-gold-bar{position:absolute;top:0;left:0;width:3px;height:100%;background:linear-gradient(to bottom,var(--gold),transparent);z-index:5;}
+
+/* ── SECTION BASE ── */
+section{padding:7rem 3.5rem;}
+.inner{max-width:1200px;margin:0 auto;}
+.s-eyebrow{display:flex;align-items:center;gap:1rem;margin-bottom:1.25rem;}
+.s-eyebrow-line{width:32px;height:1px;background:var(--gold);}
+.s-eyebrow span{font-size:0.63rem;letter-spacing:0.2em;text-transform:uppercase;color:var(--gold);font-weight:500;}
+h2.serif{font-family:'Cormorant Garamond',serif;font-size:clamp(2rem,3.5vw,3.2rem);font-weight:300;line-height:1.15;letter-spacing:-0.01em;margin-bottom:1rem;}
+h2.serif strong{font-weight:600;}
+.section-rule{width:60px;height:1px;background:linear-gradient(to right,var(--gold),transparent);margin-bottom:2.75rem;}
+.section-lead{font-size:0.95rem;color:var(--muted);line-height:1.85;font-weight:300;}
+
+/* ── ABOUT ── */
+#about{background:var(--ink2);}
+.about-layout{display:grid;grid-template-columns:1fr 1fr;gap:6rem;align-items:start;}
+.about-body p{font-size:0.95rem;color:#b0bac8;line-height:1.9;font-weight:300;margin-bottom:1.25rem;}
+.about-body p span.gold{color:var(--gold-light);}
+.pull-quote{margin:2.5rem 0;padding:2rem 2.5rem;background:var(--gold-pale);border-left:2px solid var(--gold);position:relative;}
+.pull-quote::before{content:'\201C';font-family:'Cormorant Garamond',serif;font-size:5rem;color:var(--gold);opacity:0.2;position:absolute;top:-0.5rem;left:1rem;line-height:1;}
+.pull-quote p{font-family:'Cormorant Garamond',serif;font-size:1.15rem;font-style:italic;color:var(--off);line-height:1.6;font-weight:300;}
+.pull-quote cite{display:block;font-size:0.7rem;letter-spacing:0.12em;text-transform:uppercase;color:var(--gold);margin-top:0.75rem;font-style:normal;font-family:'Inter',sans-serif;}
+
+.timeline{display:flex;flex-direction:column;gap:0;}
+.tl{display:grid;grid-template-columns:1px 1fr;gap:0 1.75rem;padding-bottom:2.25rem;position:relative;}
+.tl:last-child{padding-bottom:0;}
+.tl-spine{display:flex;flex-direction:column;align-items:center;}
+.tl-dot{width:9px;height:9px;border:1px solid var(--gold);background:var(--ink2);flex-shrink:0;position:relative;z-index:2;margin-top:0.3rem;}
+.tl-line{flex:1;width:1px;background:linear-gradient(to bottom,var(--gold-line),transparent);margin-top:4px;}
+.tl:last-child .tl-line{display:none;}
+.tl-body{padding-bottom:0;}
+.tl-firm{font-size:0.85rem;font-weight:600;color:var(--white);letter-spacing:0.03em;}
+.tl-role{font-size:0.78rem;color:var(--muted);margin-top:0.2rem;line-height:1.5;font-weight:300;}
+.tl-date{font-size:0.65rem;letter-spacing:0.1em;color:var(--gold);margin-top:0.35rem;font-weight:400;}
+
+/* ── EXPERTISE ── */
+#focus{background:var(--ink);position:relative;overflow:hidden;}
+#focus::before{content:'';position:absolute;top:0;left:0;right:0;height:1px;background:linear-gradient(to right,transparent,var(--gold-line),transparent);}
+.focus-intro{display:grid;grid-template-columns:1fr 1fr;gap:4rem;margin-bottom:4rem;align-items:end;}
+.focus-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:1px;background:var(--gold-line);}
+.focus-card{background:var(--ink);padding:2.5rem 2rem;transition:background 0.3s;}
+.focus-card:hover{background:#0c1628;}
+.fc-icon{font-size:1.25rem;margin-bottom:1.25rem;opacity:0.8;}
+.fc-num{font-family:'Cormorant Garamond',serif;font-size:3rem;font-weight:300;color:var(--gold-line);line-height:1;margin-bottom:0.75rem;}
+.fc-title{font-size:0.8rem;font-weight:600;letter-spacing:0.06em;text-transform:uppercase;margin-bottom:0.65rem;color:var(--white);}
+.fc-desc{font-size:0.8rem;color:var(--muted);line-height:1.7;font-weight:300;}
+.focus-card:hover .fc-num{color:rgba(184,150,62,0.4);}
+
+/* ── CLIENTS ── */
+#clients{background:var(--ink2);position:relative;}
+.clients-intro{max-width:680px;margin-bottom:4rem;}
+.clients-cards{display:grid;grid-template-columns:1fr 1fr;gap:1px;background:var(--gold-line);margin-bottom:4rem;}
+.cc{background:var(--ink2);padding:3rem;}
+.cc-num{font-family:'Cormorant Garamond',serif;font-size:4rem;font-weight:300;color:var(--gold-pale);line-height:1;margin-bottom:1rem;}
+.cc h3{font-family:'Cormorant Garamond',serif;font-size:1.35rem;font-weight:600;color:var(--gold-light);margin-bottom:1rem;}
+.cc p{font-size:0.85rem;color:#8a9bb5;line-height:1.85;font-weight:300;}
+.clients-logos-wrap{border-top:1px solid var(--gold-line);padding-top:3rem;}
+.cl-label{font-size:0.62rem;letter-spacing:0.18em;text-transform:uppercase;color:var(--muted);margin-bottom:1.75rem;}
+.cl-grid{display:flex;flex-wrap:wrap;gap:0.75rem;}
+.cl-chip{padding:0.45rem 1.1rem;border:1px solid rgba(255,255,255,0.08);font-size:0.72rem;font-weight:500;color:rgba(255,255,255,0.35);letter-spacing:0.06em;transition:all 0.2s;}
+.cl-chip:hover{border-color:var(--gold-line);color:var(--gold-light);}
+
+/* ── PIERCEGRAY ── */
+#piercegray{background:var(--ink);position:relative;overflow:hidden;}
+.pg-bg-text{position:absolute;top:50%;right:-2rem;transform:translateY(-50%);font-family:'Cormorant Garamond',serif;font-size:22vw;font-weight:700;color:rgba(184,150,62,0.025);line-height:1;pointer-events:none;white-space:nowrap;user-select:none;}
+.pg-layout{display:grid;grid-template-columns:1fr 1fr;gap:6rem;align-items:start;position:relative;z-index:2;}
+.pg-logo-large{font-family:'Cormorant Garamond',serif;font-size:3.5rem;font-weight:600;line-height:1;letter-spacing:0.02em;margin-bottom:0.5rem;}
+.pg-logo-large .p{color:var(--white);}
+.pg-logo-large .g{color:var(--green);}
+.pg-sub{font-size:0.78rem;letter-spacing:0.08em;text-transform:uppercase;color:var(--muted);margin-bottom:2rem;font-weight:300;}
+.pg-metrics{display:grid;grid-template-columns:1fr 1fr;gap:1px;background:var(--gold-line);margin-bottom:2.5rem;}
+.pm{background:var(--ink);padding:1.75rem;text-align:center;}
+.pm-num{font-family:'Cormorant Garamond',serif;font-size:2.4rem;font-weight:600;color:var(--gold-light);}
+.pm-label{font-size:0.6rem;letter-spacing:0.14em;text-transform:uppercase;color:var(--muted);margin-top:0.3rem;}
+.pg-right p{font-size:0.9rem;color:#8a9bb5;line-height:1.9;font-weight:300;margin-bottom:1.25rem;}
+.pg-values{margin-top:2rem;display:flex;flex-direction:column;gap:0;}
+.pv{display:flex;align-items:flex-start;gap:1.25rem;padding:1.1rem 0;border-bottom:1px solid rgba(255,255,255,0.05);}
+.pv:first-child{border-top:1px solid rgba(255,255,255,0.05);}
+.pv-label{font-size:0.65rem;letter-spacing:0.14em;text-transform:uppercase;color:var(--gold);font-weight:500;min-width:80px;padding-top:0.1rem;}
+.pv-desc{font-size:0.82rem;color:var(--muted);line-height:1.6;font-weight:300;}
+
+/* ── INSIGHTS ── */
+#insights{background:var(--ink2);}
+.insights-header{display:grid;grid-template-columns:1fr auto;align-items:end;margin-bottom:3.5rem;}
+.insights-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:1px;background:var(--gold-line);}
+.ic{background:var(--ink2);padding:2.5rem 2rem;transition:background 0.3s;cursor:pointer;}
+.ic:hover{background:#0a1424;}
+.ic-tag{font-size:0.6rem;letter-spacing:0.18em;text-transform:uppercase;color:var(--gold);margin-bottom:1.25rem;font-weight:500;}
+.ic h3{font-family:'Cormorant Garamond',serif;font-size:1.15rem;font-weight:600;line-height:1.4;margin-bottom:0.85rem;color:var(--off);}
+.ic p{font-size:0.78rem;color:var(--muted);line-height:1.75;font-weight:300;}
+.ic-footer{display:flex;align-items:center;justify-content:space-between;margin-top:1.5rem;padding-top:1.25rem;border-top:1px solid rgba(255,255,255,0.05);}
+.ic-date{font-size:0.62rem;color:rgba(122,131,153,0.5);letter-spacing:0.08em;}
+.ic-arrow{font-size:0.8rem;color:var(--gold-line);transition:color 0.2s;}
+.ic:hover .ic-arrow{color:var(--gold);}
+
+/* ── CONTACT ── */
+#contact{background:var(--ink);position:relative;overflow:hidden;}
+.contact-bg{position:absolute;inset:0;background:radial-gradient(ellipse 60% 80% at 50% 100%,rgba(184,150,62,0.07) 0%,transparent 70%);}
+.contact-layout{position:relative;z-index:2;text-align:center;max-width:720px;margin:0 auto;}
+.contact-overline{display:flex;align-items:center;justify-content:center;gap:1rem;margin-bottom:1.5rem;}
+.contact-overline::before,.contact-overline::after{content:'';display:block;width:60px;height:1px;background:linear-gradient(to right,transparent,var(--gold));}
+.contact-overline::after{background:linear-gradient(to left,transparent,var(--gold));}
+.contact-overline span{font-size:0.62rem;letter-spacing:0.22em;text-transform:uppercase;color:var(--gold);font-weight:500;}
+.contact-layout h2.serif{font-size:clamp(2.2rem,4vw,3.8rem);}
+.contact-desc{font-size:0.97rem;color:var(--muted);line-height:1.85;margin:1.5rem 0 3rem;font-weight:300;}
+.contact-actions{display:flex;justify-content:center;gap:1.25rem;flex-wrap:wrap;}
+.contact-link{display:inline-flex;align-items:center;gap:0.65rem;padding:1rem 2rem;border:1px solid var(--gold-line);color:var(--off);text-decoration:none;font-size:0.7rem;letter-spacing:0.12em;text-transform:uppercase;transition:all 0.25s;font-weight:400;}
+.contact-link:hover{border-color:var(--gold);color:var(--gold-light);background:var(--gold-pale);}
+.contact-link svg{width:15px;height:15px;flex-shrink:0;}
+
+/* ── FOOTER ── */
+footer{padding:2rem 3.5rem;border-top:1px solid var(--gold-line);display:flex;justify-content:space-between;align-items:center;}
+.ft-brand{font-family:'Cormorant Garamond',serif;font-size:1rem;font-weight:600;}
+.ft-brand .p{color:var(--white);}
+.ft-brand .g{color:var(--green);}
+footer p{font-size:0.68rem;color:var(--muted);letter-spacing:0.06em;}
+
+@media(max-width:1024px){
+  #hero{grid-template-columns:1fr;padding:8rem 2rem 4rem;}
+  .hero-right{display:none;}
+  nav{padding:0 1.75rem;}
+  section{padding:5rem 2rem;}
+  .about-layout,.focus-intro,.pg-layout,.clients-cards{grid-template-columns:1fr;}
+  .focus-grid{grid-template-columns:1fr 1fr;}
+  .insights-grid{grid-template-columns:1fr 1fr;}
+  .hero-metrics{grid-template-columns:repeat(3,1fr);}
+  .insights-header{grid-template-columns:1fr;}
+  footer{flex-direction:column;gap:1rem;text-align:center;}
+  .nav-links{display:none;}
+}
+@media(max-width:640px){
+  .focus-grid,.insights-grid,.clients-cards{grid-template-columns:1fr;}
+  .hero-metrics{grid-template-columns:1fr 1fr;}
+}
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <div class="nav-brand">
+    <div class="nav-wordmark"><em>Pierce</em>Gray</div>
+    <div class="nav-sep"></div>
+    <div class="nav-title">Gus De Camargo</div>
+  </div>
+  <div class="nav-links">
+    <a href="#about">About</a>
+    <a href="#focus">Expertise</a>
+    <a href="#clients">Clients</a>
+    <a href="#piercegray">The Firm</a>
+    <a href="#insights">Insights</a>
+    <a href="#contact" class="nav-cta">Connect</a>
+  </div>
+</nav>
+
+<!-- HERO -->
+<section id="hero">
+  <div class="hero-canvas"></div>
+  <div class="hero-grid-lines"></div>
+  <div class="hero-vignette"></div>
+  <div class="hero-accent-line"></div>
+
+  <div class="hero-left">
+    <div class="hero-kicker">
+      <div class="hero-kicker-line"></div>
+      <span>Executive Search &amp; Leadership Advisory</span>
+    </div>
+    <h1 class="display">
+      Where <em>Technology Leadership</em>
+      <strong>Meets Human Capital.</strong>
+    </h1>
+    <div class="hero-rule"></div>
+    <p class="hero-desc">Twenty-two years connecting PE-backed and Fortune 1000 organizations with the technology leaders who define what's possible — CIO, CTO, CDO, AI, Data, Digital, and the roles that don't yet have names.</p>
+    <div class="hero-actions">
+      <a href="#contact" class="btn-gold">Connect <span class="btn-arrow">→</span></a>
+      <a href="#about" class="btn-ghost">My Story <span class="btn-arrow">→</span></a>
+    </div>
+    <div class="hero-metrics">
+      <div class="metric">
+        <div class="metric-num">22+</div>
+        <div class="metric-label">Years in Search</div>
+      </div>
+      <div class="metric">
+        <div class="metric-num">1,200+</div>
+        <div class="metric-label">Searches Completed</div>
+      </div>
+      <div class="metric">
+        <div class="metric-num">140+</div>
+        <div class="metric-label">PE Fund Relationships</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="hero-right">
+    <div class="photo-container">
+      <div class="photo-border-frame"></div>
+      <div class="photo-gold-bar"></div>
+      <img class="photo-img" src="https://i.ibb.co/yF1QqBqk/Gus-Formal-8x10.jpg" id="headshot" alt="Gus De Camargo" style="min-height:520px;background:linear-gradient(160deg,#0c1e38,#060e1c);"/>
+      <div class="photo-overlay"></div>
+      <div class="photo-caption">
+        <div class="photo-name">Gus De Camargo</div>
+        <div class="photo-role">Managing Director &amp; Practice Leader</div>
+        <div class="photo-firm">Technology, Digital &amp; Data Officers · PierceGray</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ABOUT -->
+<section id="about">
+  <div class="inner">
+    <div class="about-layout">
+      <div class="about-body">
+        <div class="s-eyebrow"><div class="s-eyebrow-line"></div><span>About</span></div>
+        <h2 class="serif">Trusted Advisor to the Leaders <strong>Who Drive Transformation.</strong></h2>
+        <div class="section-rule"></div>
+        <p>I've spent 22 years at the intersection of technology strategy and executive talent — partnering with global, national, and PE-backed organizations to identify and place the leaders who modernize platforms, advance <span class="gold">data and AI capabilities</span>, and drive measurable outcomes.</p>
+        <p>My focus is on positions where technology, commercial leadership, and customer strategy converge — from President and General Manager of a technology business to CIO, CTO, CDO, Head of AI, and VP of Engineering. I operate across Technology, Financial Services, Consumer, Industrial, and Life Sciences.</p>
+        <p>I began my career in enterprise software consulting — building early relationships with organizations like Adobe, OpenText, and Microsoft. That practitioner's perspective on how technology organizations actually work is something most search professionals simply don't have. It informs every mandate I take on.</p>
+        <p>Over the last 11 years, my work has been exclusively executive search: VP to C-suite, retained engagements across North America. I've led practices at Korn Ferry and Leathwaite, and now lead the <span class="gold">Technology, Digital &amp; Data Officers Practice at PierceGray</span>.</p>
+        <div class="pull-quote">
+          <p>"Success is no accident. It is hard work, perseverance, learning, studying, sacrifice — and most of all, love for what you are doing."</p>
+          <cite>— Pelé</cite>
+        </div>
+      </div>
+      <div>
+        <div class="s-eyebrow" style="margin-bottom:2rem;"><div class="s-eyebrow-line"></div><span>Career</span></div>
+        <div class="timeline">
+          <div class="tl">
+            <div class="tl-spine"><div class="tl-dot"></div><div class="tl-line"></div></div>
+            <div class="tl-body">
+              <div class="tl-firm">PierceGray</div>
+              <div class="tl-role">Managing Director &amp; Practice Leader — Technology, Digital &amp; Data Officers</div>
+              <div class="tl-date">2026 – Present · New York</div>
+            </div>
+          </div>
+          <div class="tl">
+            <div class="tl-spine"><div class="tl-dot"></div><div class="tl-line"></div></div>
+            <div class="tl-body">
+              <div class="tl-firm">Leathwaite</div>
+              <div class="tl-role">Partner — North American Technology &amp; Digital Practice Leader</div>
+              <div class="tl-date">2021 – 2026 · New York / Toronto</div>
+            </div>
+          </div>
+          <div class="tl">
+            <div class="tl-spine"><div class="tl-dot"></div><div class="tl-line"></div></div>
+            <div class="tl-body">
+              <div class="tl-firm">Korn Ferry</div>
+              <div class="tl-role">Senior Client Partner &amp; Practice Leader, Technology Officers — North America · $11M P&amp;L</div>
+              <div class="tl-date">2014 – 2021 · New York</div>
+            </div>
+          </div>
+          <div class="tl">
+            <div class="tl-spine"><div class="tl-dot"></div><div class="tl-line"></div></div>
+            <div class="tl-body">
+              <div class="tl-firm">Optimum Talent / Conroy Ross</div>
+              <div class="tl-role">Principal, Executive Search — Technology Practice</div>
+              <div class="tl-date">2013 – 2015 · Toronto</div>
+            </div>
+          </div>
+          <div class="tl">
+            <div class="tl-spine"><div class="tl-dot"></div><div class="tl-line"></div></div>
+            <div class="tl-body">
+              <div class="tl-firm">Quantum Technology Recruiting</div>
+              <div class="tl-role">Managing Director — Technology Practice · $5M P&amp;L, Team of 15, Canada &amp; US</div>
+              <div class="tl-date">2004 – 2013 · Toronto / New York</div>
+            </div>
+          </div>
+          <div class="tl">
+            <div class="tl-spine"><div class="tl-dot"></div><div class="tl-line"></div></div>
+            <div class="tl-body">
+              <div class="tl-firm">AdLib Software &amp; Randstad Technologies</div>
+              <div class="tl-role">Account Executive / National Accounts — Enterprise Software &amp; Technology</div>
+              <div class="tl-date">2001 – 2004 · Greater Toronto Area</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- EXPERTISE -->
+<section id="focus">
+  <div class="inner">
+    <div class="focus-intro">
+      <div>
+        <div class="s-eyebrow"><div class="s-eyebrow-line"></div><span>Expertise</span></div>
+        <h2 class="serif">The Roles That Define <strong>Technology's Highest Leverage.</strong></h2>
+        <div class="section-rule"></div>
+      </div>
+      <div>
+        <p class="section-lead">My practice is anchored on relationships with leaders who have proven track records in modernizing platforms, advancing data and AI, and improving decision-making at scale. Every engagement is treated as an advisory mandate, not a transaction.</p>
+      </div>
+    </div>
+    <div class="focus-grid">
+      <div class="focus-card">
+        <div class="fc-num">01</div>
+        <div class="fc-title">CIO / Enterprise Technology</div>
+        <p class="fc-desc">End-to-end enterprise technology leadership for organizations modernizing platforms, IT operations, and architecture at scale.</p>
+      </div>
+      <div class="focus-card">
+        <div class="fc-num">02</div>
+        <div class="fc-title">CTO / Engineering</div>
+        <p class="fc-desc">Engineering, architecture, and product technology leadership for software, cloud, and transformation-stage environments.</p>
+      </div>
+      <div class="focus-card">
+        <div class="fc-num">03</div>
+        <div class="fc-title">AI, Data &amp; Analytics</div>
+        <p class="fc-desc">CDO, Head of AI, and Data Science leadership for organizations embedding intelligence into their core operating model.</p>
+      </div>
+      <div class="focus-card">
+        <div class="fc-num">04</div>
+        <div class="fc-title">Digital &amp; Product</div>
+        <p class="fc-desc">Digital transformation, product management, eCommerce, and customer experience leadership across consumer and enterprise.</p>
+      </div>
+      <div class="focus-card">
+        <div class="fc-num">05</div>
+        <div class="fc-title">Cloud &amp; Infrastructure</div>
+        <p class="fc-desc">Cloud migration, DevOps, and infrastructure modernization leadership for organizations scaling their technical foundations.</p>
+      </div>
+      <div class="focus-card">
+        <div class="fc-num">06</div>
+        <div class="fc-title">Cybersecurity &amp; Risk</div>
+        <p class="fc-desc">CISO and information security leadership for organizations managing enterprise risk in increasingly complex threat environments.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CLIENTS -->
+<section id="clients">
+  <div class="inner">
+    <div class="clients-intro">
+      <div class="s-eyebrow"><div class="s-eyebrow-line"></div><span>Who I Work With</span></div>
+      <h2 class="serif">Built for Environments Where <strong>Leadership Is a Value Creation Lever.</strong></h2>
+      <div class="section-rule"></div>
+      <p class="section-lead">The organizations I serve share a common characteristic: they understand that the difference between a good technology leader and the right one isn't marginal — it compounds.</p>
+    </div>
+    <div class="clients-cards">
+      <div class="cc">
+        <div class="cc-num">I</div>
+        <h3>Private Equity &amp; Portfolio Companies</h3>
+        <p>PE firms and their portfolio companies demand advisors who operate at their pace. They need leaders who compress timelines, make decisions under commercial pressure, and translate technical debt into outcomes a board acts on. I've built a career around precisely this.</p>
+      </div>
+      <div class="cc">
+        <div class="cc-num">II</div>
+        <h3>Fortune 1000 &amp; Enterprise Organizations</h3>
+        <p>Large, mature organizations elevating their technology capabilities — modernizing a legacy stack, building an AI function for the first time, or redefining what the CIO role demands post-transformation. Clients have included Thomson Reuters, TD, Loblaw, Bell, Rogers, P&amp;G, and Publix.</p>
+      </div>
+      <div class="cc">
+        <div class="cc-num">III</div>
+        <h3>Emerging &amp; High-Growth Businesses</h3>
+        <p>Organizations building their technology leadership foundation for the first time. Getting the right CTO, Head of Engineering, or VP of Data in place at the right stage is often the single decision that determines whether a business scales or plateaus.</p>
+      </div>
+      <div class="cc">
+        <div class="cc-num">IV</div>
+        <h3>Transformation-Stage Environments</h3>
+        <p>Companies at a decisive inflection point — digital transformation, cloud migration, AI strategy, M&amp;A integration. These are the mandates where advisory depth matters most, and where my background in both enterprise software and executive search creates a genuine, differentiated edge.</p>
+      </div>
+    </div>
+    <div class="clients-logos-wrap">
+      <div class="cl-label">Select Organizations Served</div>
+      <div class="cl-grid">
+        <div class="cl-chip">Thomson Reuters</div><div class="cl-chip">Loblaw</div><div class="cl-chip">TD Bank</div><div class="cl-chip">Bell Canada</div><div class="cl-chip">Rogers</div><div class="cl-chip">Rite Aid</div><div class="cl-chip">P&amp;G</div><div class="cl-chip">Publix</div><div class="cl-chip">OpenText</div><div class="cl-chip">Abbott</div><div class="cl-chip">LCBO</div><div class="cl-chip">Ceridian</div><div class="cl-chip">Adobe</div><div class="cl-chip">Microsoft</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- PIERCEGRAY -->
+<section id="piercegray">
+  <div class="pg-bg-text">PG</div>
+  <div class="inner">
+    <div class="pg-layout">
+      <div>
+        <div class="s-eyebrow"><div class="s-eyebrow-line"></div><span>The Firm</span></div>
+        <div class="pg-logo-large"><span class="p">Pierce</span><span class="g">Gray</span></div>
+        <div class="pg-sub">Retained Executive Search · Private Equity &amp; Fortune 1000</div>
+        <div class="pg-metrics">
+          <div class="pm"><div class="pm-num">1,200+</div><div class="pm-label">Placements</div></div>
+          <div class="pm"><div class="pm-num">140+</div><div class="pm-label">PE Fund Clients</div></div>
+          <div class="pm"><div class="pm-num">85%</div><div class="pm-label">Client Repeat Rate</div></div>
+          <div class="pm"><div class="pm-num">400+</div><div class="pm-label">Portfolio Companies</div></div>
+        </div>
+        <a href="https://www.piercegray.com" target="_blank" class="btn-gold" style="margin-top:2rem;">Visit PierceGray.com <span class="btn-arrow">→</span></a>
+      </div>
+      <div class="pg-right">
+        <div class="section-rule"></div>
+        <p>PierceGray was built on a conviction that the quality of leadership is the most powerful lever in any value creation agenda. As a boutique, retained firm, we operate as an extension of our clients' teams — with the advisory depth, pace, and accuracy that PE-backed environments demand.</p>
+        <p>I lead PierceGray's Technology, Digital &amp; Data Officers Practice — a specialized capability serving clients at the intersection of technology leadership and business transformation. Our work spans CIO, CTO, CDO, AI &amp; Data, Digital, Cloud, and Security across Industrial, Consumer, Healthcare, Financial Services, and Technology sectors.</p>
+        <p>An 85% client repeat rate isn't a statistic. It's a reflection of how we work: as strategic partners who understand your business, your market, and what exceptional leadership looks like in your specific context.</p>
+        <div class="pg-values">
+          <div class="pv"><div class="pv-label">Excellence</div><div class="pv-desc">Thoughtful advisors delivering results with speed and accuracy.</div></div>
+          <div class="pv"><div class="pv-label">Integrity</div><div class="pv-desc">Transparent in communication, authentic in every interaction.</div></div>
+          <div class="pv"><div class="pv-label">Grit</div><div class="pv-desc">We embrace challenges and overcome obstacles with determination.</div></div>
+          <div class="pv"><div class="pv-label">Teamwork</div><div class="pv-desc">One firm, collective network, incentives aligned with our clients.</div></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- INSIGHTS -->
+<section id="insights">
+  <div class="inner">
+    <div class="insights-header">
+      <div>
+        <div class="s-eyebrow"><div class="s-eyebrow-line"></div><span>Insights</span></div>
+        <h2 class="serif">Perspectives on Technology <strong>Leadership &amp; Talent.</strong></h2>
+        <div class="section-rule"></div>
+      </div>
+      <a href="https://www.linkedin.com/in/itsearch/" target="_blank" class="btn-ghost" style="margin-bottom:2.75rem;">Follow on LinkedIn <span class="btn-arrow">→</span></a>
+    </div>
+    <div class="insights-grid">
+      <div class="ic">
+        <div class="ic-tag">AI &amp; Workforce</div>
+        <h3>The Capability Gap Isn't Coming. It's Already Here.</h3>
+        <p>59% of the workforce will need new skills by 2026. The problem isn't access to AI — it's building the leadership capacity to use it effectively.</p>
+        <div class="ic-footer"><span class="ic-date">Recent · LinkedIn</span><span class="ic-arrow">→</span></div>
+      </div>
+      <div class="ic">
+        <div class="ic-tag">Talent &amp; Hiring</div>
+        <h3>Hiring Isn't Slow. It's Broken.</h3>
+        <p>Both sides are gaming signals that no longer mean anything. The best hires were never made by an algorithm — and never will be.</p>
+        <div class="ic-footer"><span class="ic-date">Recent · LinkedIn</span><span class="ic-arrow">→</span></div>
+      </div>
+      <div class="ic">
+        <div class="ic-tag">Private Equity</div>
+        <h3>The Most Expensive PE Mistake Isn't a Bad Acquisition.</h3>
+        <p>It's keeping the wrong technology leader six months too long. Technology leadership isn't a back-office concern — it's a value creation lever.</p>
+        <div class="ic-footer"><span class="ic-date">Recent · LinkedIn</span><span class="ic-arrow">→</span></div>
+      </div>
+      <div class="ic">
+        <div class="ic-tag">CIO Leadership</div>
+        <h3>Enterprises Keep Hiring CIOs for the Job That Existed Three Years Ago.</h3>
+        <p>The profile they need translates technology investment into commercial outcomes. The profile they keep selecting has technical pedigree. These are not the same person.</p>
+        <div class="ic-footer"><span class="ic-date">Recent · LinkedIn</span><span class="ic-arrow">→</span></div>
+      </div>
+      <div class="ic">
+        <div class="ic-tag">AI Strategy</div>
+        <h3>Hiring an AI Leader Is Not an AI Strategy.</h3>
+        <p>The real question isn't who owns AI on the org chart. It's whether your leadership has changed how they make decisions because of it.</p>
+        <div class="ic-footer"><span class="ic-date">Recent · LinkedIn</span><span class="ic-arrow">→</span></div>
+      </div>
+      <div class="ic">
+        <div class="ic-tag">Agentic AI</div>
+        <h3>Agentic AI Isn't a Product Upgrade. It's a Labor Model Disruption Event.</h3>
+        <p>The unit of AI value is shifting from output to action. For PE portfolios, the question is whether you're structured to capture the margin before competitors do.</p>
+        <div class="ic-footer"><span class="ic-date">Recent · LinkedIn</span><span class="ic-arrow">→</span></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CONTACT -->
+<section id="contact">
+  <div class="contact-bg"></div>
+  <div class="inner">
+    <div class="contact-layout">
+      <div class="contact-overline"><span>Let's Talk</span></div>
+      <h2 class="serif">Ready to Talk <em>Technology Leadership?</em></h2>
+      <p class="contact-desc">Whether you're a PE firm assessing your technology bench, an organization building a leadership function from scratch, or an executive exploring what's next — I'd like to hear from you.</p>
+      <div class="contact-actions">
+        <a href="https://www.linkedin.com/in/itsearch/" target="_blank" class="contact-link">
+          <svg viewBox="0 0 24 24" fill="currentColor"><path d="M16 8a6 6 0 016 6v7h-4v-7a2 2 0 00-2-2 2 2 0 00-2 2v7h-4v-7a6 6 0 016-6zM2 9h4v12H2z"/><circle cx="4" cy="4" r="2"/></svg>
+          Connect on LinkedIn
+        </a>
+        <a href="https://www.piercegray.com" target="_blank" class="contact-link">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><circle cx="12" cy="12" r="10"/><line x1="2" y1="12" x2="22" y2="12"/><path d="M12 2a15.3 15.3 0 010 20M12 2a15.3 15.3 0 000 20"/></svg>
+          PierceGray.com
+        </a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="ft-brand"><span class="p">Pierce</span><span class="g">Gray</span> · Gus De Camargo</div>
+  <p>Managing Director, Technology, Digital &amp; Data Officers Practice · New York</p>
+  <p>© 2026</p>
+</footer>
+
+</body>
+</html>
