@@ -41,7 +41,7 @@ nav{position:fixed;top:0;left:0;right:0;z-index:200;height:64px;display:flex;ali
 .hero-left{position:relative;z-index:5;}
 .hero-kicker{display:flex;align-items:center;gap:0.85rem;margin-bottom:1.5rem;}
 .hero-kicker-line{width:40px;height:1px;background:linear-gradient(to right,var(--gold),transparent);}
-.hero-kicker span{font-size:0.63rem;letter-spacing:0.22em;text-transform:uppercase;color:var(--gold);font-weight:500;}
+.hero-kicker span{font-size:0.8rem;letter-spacing:0.22em;text-transform:uppercase;color:var(--gold);font-weight:500;}
 h1.display{font-family:'Cormorant Garamond',serif;font-size:clamp(2.8rem,5vw,4.6rem);font-weight:300;line-height:1.06;letter-spacing:-0.01em;margin-bottom:1.5rem;}
 h1.display strong{font-weight:600;display:block;}
 h1.display em{color:var(--gold);font-style:italic;font-weight:300;}
@@ -119,8 +119,9 @@ h2.serif strong{font-weight:600;}
 .clients-intro{max-width:640px;margin-bottom:2.5rem;}
 .clients-cards{display:grid;grid-template-columns:1fr 1fr;gap:1px;background:var(--gold-line);margin-bottom:3rem;}
 .cc{background:var(--ink2);padding:1.5rem 1.75rem;}
-.cc-num{font-family:'Cormorant Garamond',serif;font-size:2.5rem;font-weight:700;color:#6b7280;line-height:1;margin-bottom:0.15rem;}
-.cc h3{font-family:'Cormorant Garamond',serif;font-size:1.15rem;font-weight:600;color:var(--gold-light);margin-bottom:0.5rem;}
+.cc-header{display:flex;align-items:baseline;gap:0.75rem;margin-bottom:0.6rem;}
+.cc-num{font-family:'Cormorant Garamond',serif;font-size:1.75rem;font-weight:700;color:#6b7280;line-height:1;}
+.cc h3{font-family:'Cormorant Garamond',serif;font-size:1.15rem;font-weight:600;color:var(--gold-light);margin:0;}
 .cc p{font-size:0.82rem;color:var(--body);line-height:1.65;font-weight:300;}
 .client-names-wrap{border-top:1px solid var(--gold-line);padding-top:2.25rem;}
 .cn-label{font-size:0.6rem;letter-spacing:0.18em;text-transform:uppercase;color:var(--muted);margin-bottom:1.25rem;}
@@ -316,46 +317,54 @@ footer p{font-size:0.65rem;color:var(--muted);letter-spacing:0.05em;}
       <p class="s-lead" style="max-width:820px;">The organizations I serve share a common characteristic: they understand that the difference between a good technology leader and the right one isn't marginal — it compounds.</p>
     </div>
     <div class="clients-cards">
-      <div class="cc"><div class="cc-num">I</div><h3>Private Equity &amp; Portfolio Companies</h3><p>PE firms and their portfolio companies demand advisors who operate at their pace — compressing timelines, making decisions under commercial pressure, and translating technical debt into outcomes a board acts on.</p></div>
-      <div class="cc"><div class="cc-num">II</div><h3>Fortune 1000 &amp; Enterprise Organizations</h3><p>Large, mature organizations elevating their technology capabilities — modernizing a legacy stack, building an AI function for the first time, or redefining what the CIO role demands post-transformation.</p></div>
-      <div class="cc"><div class="cc-num">III</div><h3>Emerging &amp; High-Growth Businesses</h3><p>Organizations building their technology leadership foundation for the first time. Getting the right CTO or VP of Data in place at the right stage is often the decision that determines whether a business scales or plateaus.</p></div>
-      <div class="cc"><div class="cc-num">IV</div><h3>Transformation-Stage Environments</h3><p>Companies at a decisive inflection point — digital transformation, cloud migration, AI strategy, M&amp;A integration. Where advisory depth matters most and a practitioner's perspective creates a genuine edge.</p></div>
+      <div class="cc"><div class="cc-header"><div class="cc-num">I</div><h3>Private Equity &amp; Portfolio Companies</h3></div><p>PE firms and their portfolio companies demand advisors who operate at their pace — compressing timelines, making decisions under commercial pressure, and translating technical debt into outcomes a board acts on.</p></div>
+      <div class="cc"><div class="cc-header"><div class="cc-num">II</div><h3>Fortune 1000 &amp; Enterprise Organizations</h3></div><p>Large, mature organizations elevating their technology capabilities — modernizing a legacy stack, building an AI function for the first time, or redefining what the CIO role demands post-transformation.</p></div>
+      <div class="cc"><div class="cc-header"><div class="cc-num">III</div><h3>Emerging &amp; High-Growth Businesses</h3></div><p>Organizations building their technology leadership foundation for the first time. Getting the right CTO or VP of Data in place at the right stage is often the decision that determines whether a business scales or plateaus.</p></div>
+      <div class="cc"><div class="cc-header"><div class="cc-num">IV</div><h3>Transformation-Stage Environments</h3></div><p>Companies at a decisive inflection point — digital transformation, cloud migration, AI strategy, M&amp;A integration. Where advisory depth matters most and a practitioner's perspective creates a genuine edge.</p></div>
     </div>
     <div class="client-names-wrap">
       <div class="cn-label">Select Organizations Served</div>
       <div class="cn-grid">
+        <!-- PE Funds -->
+        <div class="cn-chip">KKR</div>
+        <div class="cn-chip">TPG Capital</div>
+        <div class="cn-chip">Bain Capital</div>
+        <div class="cn-chip">Advent International</div>
+        <div class="cn-chip">Stone Point Capital</div>
+        <div class="cn-chip">Platinum Equity</div>
+        <div class="cn-chip">Oaktree Capital</div>
+        <div class="cn-chip">Chicago Pacific Founders</div>
+        <!-- Mid Market -->
+        <div class="cn-chip">Kelsey-Seybold Clinic</div>
+        <div class="cn-chip">Cooper's Hawk Winery</div>
+        <div class="cn-chip">Pella Corporation</div>
+        <div class="cn-chip">Orvis</div>
+        <div class="cn-chip">Lutron Electronics</div>
+        <div class="cn-chip">Delaware North</div>
+        <div class="cn-chip">KingSett Capital</div>
+        <div class="cn-chip">Roots Canada</div>
+        <div class="cn-chip">Princess Auto</div>
+        <div class="cn-chip">Ceridian</div>
+        <div class="cn-chip">Puttshack</div>
+        <div class="cn-chip">Trek Bicycles</div>
+        <div class="cn-chip">CarMax</div>
+        <div class="cn-chip">H&amp;R Block</div>
+        <div class="cn-chip">Rite Aid</div>
+        <div class="cn-chip">Baptist Health</div>
+        <div class="cn-chip">BayCare Health Systems</div>
+        <div class="cn-chip">Cirrus Aircraft</div>
+        <div class="cn-chip">Scandinavian Tobacco Group</div>
+        <!-- Large Enterprise -->
         <div class="cn-chip">Thomson Reuters</div>
         <div class="cn-chip">Procter &amp; Gamble</div>
-        <div class="cn-chip">Mastercard</div>
-        <div class="cn-chip">Cisco Systems</div>
-        <div class="cn-chip">Morgan Stanley</div>
-        <div class="cn-chip">Wells Fargo</div>
-        <div class="cn-chip">Visa</div>
-        <div class="cn-chip">CVS Health</div>
-        <div class="cn-chip">Chevron</div>
-        <div class="cn-chip">Mayo Clinic</div>
-        <div class="cn-chip">Grainger</div>
-        <div class="cn-chip">Corning</div>
-        <div class="cn-chip">Sherwin-Williams</div>
-        <div class="cn-chip">Publix Super Markets</div>
         <div class="cn-chip">Loblaws</div>
         <div class="cn-chip">TD Bank</div>
-        <div class="cn-chip">American Express</div>
-        <div class="cn-chip">Cognizant</div>
-        <div class="cn-chip">Siemens</div>
-        <div class="cn-chip">Zebra Technologies</div>
-        <div class="cn-chip">Kyndryl</div>
-        <div class="cn-chip">CarMax</div>
+        <div class="cn-chip">Mayo Clinic</div>
+        <div class="cn-chip">Grainger</div>
+        <div class="cn-chip">Chevron</div>
+        <div class="cn-chip">Mastercard</div>
         <div class="cn-chip">Eli Lilly</div>
-        <div class="cn-chip">Regeneron</div>
-        <div class="cn-chip">Western Union</div>
-        <div class="cn-chip">H&amp;R Block</div>
-        <div class="cn-chip">Carrier</div>
-        <div class="cn-chip">Rite Aid</div>
-        <div class="cn-chip">KKR</div>
-        <div class="cn-chip">Bain Capital</div>
-        <div class="cn-chip">TPG Capital</div>
-        <div class="cn-chip">Advent International</div>
+        <div class="cn-chip">Publix Super Markets</div>
       </div>
     </div>
   </div>
